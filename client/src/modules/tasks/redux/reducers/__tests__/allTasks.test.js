@@ -15,6 +15,7 @@ jest.mock('../cases/http', () => ({
   setError: jest.fn(() => ({
     error: 'mocked',
   })),
+  setSuccess: jest.fn(() => ({})),
 }));
 
 // Mock fetchTasksSuccess
@@ -27,7 +28,7 @@ jest.mock('../cases/allTasks/fetchTasksSuccess', () => (
 describe('Tasks.Redux.Reducers.AllTasks', () => {
   it('should call setLoading case when dispatching an FETCH_TASKS_LOADING action', () => {
     const newState = reducer(undefined, actionFactory({ type: FETCH_TASKS_LOADING }));
-
+    
     expect(newState).toEqual({ isFetching: 'mocked' });
   });
 

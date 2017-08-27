@@ -2,6 +2,10 @@
 
 exports[`Tasks.Redux.ActionTypes should match snapshot 1`] = `
 Object {
+  "CREATE_TASK": "travix/front-end-test/tasks/CREATE_TASK",
+  "CREATE_TASK_ERROR": "travix/front-end-test/tasks/CREATE_TASK_REJECTED",
+  "CREATE_TASK_LOADING": "travix/front-end-test/tasks/CREATE_TASK_PENDING",
+  "CREATE_TASK_SUCCESS": "travix/front-end-test/tasks/CREATE_TASK_FULFILLED",
   "FETCH_TASKS": "travix/front-end-test/tasks/FETCH_TASKS",
   "FETCH_TASKS_ERROR": "travix/front-end-test/tasks/FETCH_TASKS_REJECTED",
   "FETCH_TASKS_LOADING": "travix/front-end-test/tasks/FETCH_TASKS_PENDING",
