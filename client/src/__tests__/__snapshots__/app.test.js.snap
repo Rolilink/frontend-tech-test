@@ -14,9 +14,18 @@ exports[`App should render 1`] = `
       }
     }
   >
-    <span>
-      dasasdas
-    </span>
+    <Grid
+      bsClass="container"
+      componentClass="div"
+      fluid={false}
+    >
+      <Row
+        bsClass="row"
+        componentClass="div"
+      >
+        <Connect(ListTasks) />
+      </Row>
+    </Grid>
   </Provider>
 </div>
 `;
