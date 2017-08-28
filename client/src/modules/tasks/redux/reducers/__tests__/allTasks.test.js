@@ -5,6 +5,7 @@ import {
   FETCH_TASKS_LOADING,
   FETCH_TASKS_SUCCESS,
   FETCH_TASKS_ERROR,
+  CREATE_TASK_SUCCESS,
 } from '../../actionTypes';
 
 // Mock http cases
@@ -25,10 +26,16 @@ jest.mock('../cases/allTasks/fetchTasksSuccess', () => (
   }))
 ));
 
+jest.mock('../cases/allTasks/createTaskSuccess', () => (
+  jest.fn(() => ({
+    tasks: 'mocked',
+  }))
+));
+
 describe('Tasks.Redux.Reducers.AllTasks', () => {
   it('should call setLoading case when dispatching an FETCH_TASKS_LOADING action', () => {
     const newState = reducer(undefined, actionFactory({ type: FETCH_TASKS_LOADING }));
-    
+
     expect(newState).toEqual({ isFetching: 'mocked' });
   });
 
@@ -40,6 +47,12 @@ describe('Tasks.Redux.Reducers.AllTasks', () => {
 
   it('should call fetchTasksSuccess case when dispatching an FETCH_TASKS_SUCCESS action', () => {
     const newState = reducer(undefined, actionFactory({ type: FETCH_TASKS_SUCCESS }));
+
+    expect(newState).toEqual({ tasks: 'mocked' });
+  });
+
+  it('should call createTaskSuccess case when dispatching an CREATE_TASK_SUCCESS action', () => {
+    const newState = reducer(undefined, actionFactory({ type: CREATE_TASK_SUCCESS }));
 
     expect(newState).toEqual({ tasks: 'mocked' });
   });
