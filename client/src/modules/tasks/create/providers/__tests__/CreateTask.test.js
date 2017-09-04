@@ -5,9 +5,9 @@ import { shallow } from 'enzyme';
 import connectToState from '../CreateTask';
 
 jest.mock('../../../redux/', () => ({
-  fetchTasks: jest.fn(),
+  createTask: jest.fn(),
   selectors: {
-    getShowTasksProps: () => ({
+    getCreateTaskProps: () => ({
       tasks: [],
       isFetching: true,
       error: 'error',
