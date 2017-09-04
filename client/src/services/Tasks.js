@@ -17,4 +17,21 @@ export default class Tasks {
         });
     });
   }
+
+  createTask(task) {
+    return new Promise((resolve, reject) => {
+      request
+        .post(this.API_HOST + '/api/tasks')
+        .send({
+          title: task.title,
+          description: task.description,
+        })
+        .then((response) => {
+          resolve({ task: response.body.task });
+        })
+        .catch((err) => {
+          reject('We are unable to fetch tasks on this moment.');
+        });
+    });
+  }
 }

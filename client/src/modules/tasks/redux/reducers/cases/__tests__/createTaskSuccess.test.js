@@ -5,9 +5,7 @@ import { normalizeTask } from '../../../utils';
 import createTaskSuccess from '../allTasks/createTaskSuccess';
 
 jest.mock('../http', () => ({
-  setSuccess: () => {
-    return { isFetching: true, error: 'error' };
-  },
+  setSuccess: () => ({ isFetching: true, error: 'error' }),
 }));
 
 jest.mock('../allTasks/addTasks', () => (
