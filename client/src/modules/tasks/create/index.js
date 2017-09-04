@@ -1,5 +1,4 @@
-/* import connectToState from './providers/ListTasks';
-import ListTasksComponent from './components/ListTasks';
+import connectToState from './providers/CreateTask';
+import CreateTaskComponent from './components/CreateTask';
 
-export default connectToState(ListTasksComponent);
-*/
+export default connectToState(CreateTaskComponent);

@@ -38,8 +38,8 @@ export default class CreateTask extends React.Component {
     return (
       <TaskForm
         className={`CreateTask-TaskForm ${className}`}
-        onTitleUpdate={title => this.setState({ task: { title } })}
-        onDescriptionUpdate={description => this.setState({ task: { description } })}
+        onTitleChange={title => this.setState({ task: { ...task, title } })}
+        onDescriptionChange={description => this.setState({ task: { ...task, description } })}
         onSubmit={() => this.submitTask()}
         onCancel={() => this.clearMode()}
         task={task}
@@ -62,7 +62,9 @@ export default class CreateTask extends React.Component {
   submitTask() {
     const { task } = this.state;
 
-    this.props.createTask(task);
+    this.props.createTask(task).then(() => {
+      this.setState(getInitialState());
+    });
   }
 
   clearMode() {

@@ -1,7 +1,14 @@
 'use strict';
 
 const app = require('express')();
+const bodyParser = require('body-parser');
 const tasksContainer = require('./tasks.json');
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 /**
  * GET /tasks
@@ -91,8 +98,8 @@ app.put('/task/update/:id/:title/:description', (req, res) => {
 app.post('/tasks', (req, res) => {
   const task = {
     id: tasksContainer.tasks.length,
-    title: req.params.title,
-    description: req.params.description,
+    title: req.body.title,
+    description: req.body.description,
   };
 
   tasksContainer.tasks.push(task);

@@ -45,8 +45,8 @@ describe('Tasks.Create.CreateTask', () => {
       />,
     );
 
-    expect(wrapper.find(TaskForm).first().props()).toHaveProperty('onTitleUpdate');
-    expect(wrapper.find(TaskForm).first().props()).toHaveProperty('onDescriptionUpdate');
+    expect(wrapper.find(TaskForm).first().props()).toHaveProperty('onTitleChange');
+    expect(wrapper.find(TaskForm).first().props()).toHaveProperty('onDescriptionChange');
     expect(wrapper.find(TaskForm).first().props()).toHaveProperty('onSubmit');
     expect(wrapper.find(TaskForm).first().props()).toHaveProperty('onCancel');
     expect(wrapper.find(TaskForm).first().props()).toHaveProperty('task');

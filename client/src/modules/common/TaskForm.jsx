@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, FormGroup, Button, FormControl, Label } from 'react-bootstrap';
+import { Form, FormGroup, Button, FormControl, ControlLabel } from 'react-bootstrap';
 
 
 export default class TaskForm extends React.Component {
@@ -27,6 +27,12 @@ export default class TaskForm extends React.Component {
     this.props.onSubmit();
   }
 
+  isSubmitButtonEnabled() {
+    const { task } = this.props;
+
+    return task.title.length > 0 && task.description.length > 0;
+  }
+
   render() {
     const {
       task,
@@ -38,7 +44,7 @@ export default class TaskForm extends React.Component {
     return (
       <Form onSubmit={e => this.onSubmit(e)} className={`TasksForm ${this.props.className}`}>
         <FormGroup className="TasksForm-Title">
-          <Label>Title:</Label>
+          <ControlLabel>Title:</ControlLabel>
           <FormControl
             type="text"
             onChange={e => onTitleChange(e.target.value)}
@@ -47,7 +53,7 @@ export default class TaskForm extends React.Component {
           />
         </FormGroup>
         <FormGroup className="TasksForm-Description">
-          <Label>Description:</Label>
+          <ControlLabel>Description:</ControlLabel>
           <FormControl
             type="text"
             onChange={e => onDescriptionChange(e.target.value)}
@@ -56,7 +62,7 @@ export default class TaskForm extends React.Component {
           />
         </FormGroup>
         <FormGroup className="TasksForm-Actions">
-          <FormControl type="submit" className="btn btn-primary TasksForm-SubmitButton" value="Submit" />
+          <input type="submit" className="btn btn-primary TasksForm-SubmitButton" disabled={!this.isSubmitButtonEnabled()} value="Submit" />
           <Button className="btn btn-primary TasksForm-CancelButton" onClick={() => onCancel()} bsStyle="danger">Cancel</Button>
         </FormGroup>
       </Form>

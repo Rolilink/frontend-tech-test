@@ -5,8 +5,10 @@
   "main": "server.js",
   "scripts": {
     "start": "node ./server/server.js",
+    "client": "npm run dev-server",
+    "server": "nodemon ./server/server.js",
     "dev-server": "webpack-dev-server",
-    "dev": "concurrently --kill-others \"npm run start\" \"npm run dev-server\"",
+    "dev": "concurrently --kill-others \"npm run server\" \"npm run client\"",
     "test": "REACT_APP_API_HOST='http://localhost:8080' jest --silent",
     "test:snapshots:regenerate": "npm run test -- --updateSnapshot",
     "test:debug": "REACT_APP_API_HOST='http://localhost:8080' jest",
@@ -20,8 +22,10 @@
   "author": "spartans",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.17.2",
     "express": "^4.14.0",
     "lodash": "^4.17.4",
+    "nodemon": "^1.12.0",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.2",
