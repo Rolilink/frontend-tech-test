@@ -73,7 +73,9 @@
       "client/**/*.{js,jsx}",
       "!**/node_modules/**",
       "!**/vendor/**",
-      "!**/dist/**"
+      "!**/dist/**",
+      "!**/index.{js,jsx}",
+      "!**/__tests__/**"
     ]
   }
 }
