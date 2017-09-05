@@ -3,7 +3,7 @@ import * as factories from './factories';
 import * as selectors from './selectors';
 import * as utils from './utils';
 
-import { fetchTasks } from './actions';
+import { fetchTasks, createTask } from './actions';
 
 import reducerModule from './reducers';
 
@@ -13,6 +13,7 @@ const reducer = {
 
 export {
   fetchTasks,
+  createTask,
   actionTypes,
   factories,
   selectors,

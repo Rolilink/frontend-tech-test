@@ -7,6 +7,7 @@ import { Grid, Row } from 'react-bootstrap';
 import createStore from './store';
 import reducers from './modules/reducers';
 import ListTasks from './modules/tasks/list';
+import CreateTask from './modules/tasks/create';
 
 
 const store = createStore({ reducers, middlewares: [new PromiseMiddleware(), logger] });
@@ -17,6 +18,9 @@ export default class App extends React.Component {
       <div className="App">
         <Provider store={store}>
           <Grid>
+            <Row>
+              <CreateTask />
+            </Row>
             <Row>
               <ListTasks />
             </Row>
