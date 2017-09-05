@@ -21,7 +21,7 @@ class Component extends React.Component {
   }
 }
 
-describe('Tasks.List.Providers.CreateTask', () => {
+describe('Tasks.Create.Providers.CreateTask', () => {
   let instanceProps;
   let wrapper;
 
