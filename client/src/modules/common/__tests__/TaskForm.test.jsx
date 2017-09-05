@@ -54,7 +54,7 @@ describe('Common.TaskForm', () => {
     expect(onCancel).toBeCalled();
   });
 
-  it('should have a disabled submit button when there is no task provided', () => {
+  it('should have a disabled submit button when task is on default state', () => {
     const wrapper = mount(<TaskForm />);
 
     expect(wrapper.find('.TasksForm-SubmitButton').props()).toHaveProperty('disabled', true);
