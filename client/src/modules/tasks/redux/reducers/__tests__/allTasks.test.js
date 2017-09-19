@@ -9,51 +9,54 @@ import {
 } from '../../actionTypes';
 
 // Mock http cases
-jest.mock('../cases/http', () => ({
-  setLoading: jest.fn(() => ({
-    isFetching: 'mocked',
-  })),
-  setError: jest.fn(() => ({
-    error: 'mocked',
-  })),
-  setSuccess: jest.fn(() => ({})),
-}));
+jest.mock('../cases/http');
+const httpCasesModule = require('../cases/http');
 
 // Mock fetchTasksSuccess
-jest.mock('../cases/allTasks/fetchTasksSuccess', () => (
-  jest.fn(() => ({
-    tasks: 'mocked',
-  }))
-));
+jest.mock('../cases/allTasks/fetchTasksSuccess');
+const fetchTasksSuccessModule = require('../cases/allTasks/fetchTasksSuccess');
 
-jest.mock('../cases/allTasks/createTaskSuccess', () => (
-  jest.fn(() => ({
-    tasks: 'mocked',
-  }))
-));
+// Mock createTaskSuccess
+jest.mock('../cases/allTasks/createTaskSuccess');
+const createTaskSuccessModule = require('../cases/allTasks/createTaskSuccess');
 
 describe('Tasks.Redux.Reducers.AllTasks', () => {
-  it('should call setLoading case when dispatching an FETCH_TASKS_LOADING action', () => {
-    const newState = reducer(undefined, actionFactory({ type: FETCH_TASKS_LOADING }));
+  const state = {};
 
-    expect(newState).toEqual({ isFetching: 'mocked' });
+  afterEach(() => {
+    httpCasesModule.setLoading.mockClear();
+    httpCasesModule.setError.mockClear();
+  });
+
+  it('should call setLoading case when dispatching an FETCH_TASKS_LOADING action', () => {
+    const action = actionFactory({ type: FETCH_TASKS_LOADING });
+
+    reducer(state, action);
+
+    expect(httpCasesModule.setLoading).toHaveBeenCalledWith(state, action);
   });
 
   it('should call setError case when dispatching an FETCH_TASKS_ERROR action', () => {
-    const newState = reducer(undefined, actionFactory({ type: FETCH_TASKS_ERROR }));
+    const action = actionFactory({ type: FETCH_TASKS_ERROR });
 
-    expect(newState).toEqual({ error: 'mocked' });
+    reducer(state, action);
+
+    expect(httpCasesModule.setError).toHaveBeenCalledWith(state, action);
   });
 
   it('should call fetchTasksSuccess case when dispatching an FETCH_TASKS_SUCCESS action', () => {
-    const newState = reducer(undefined, actionFactory({ type: FETCH_TASKS_SUCCESS }));
+    const action = actionFactory({ type: FETCH_TASKS_SUCCESS });
 
-    expect(newState).toEqual({ tasks: 'mocked' });
+    reducer(state, action);
+
+    expect(fetchTasksSuccessModule.default).toHaveBeenCalledWith(state, action);
   });
 
   it('should call createTaskSuccess case when dispatching an CREATE_TASK_SUCCESS action', () => {
-    const newState = reducer(undefined, actionFactory({ type: CREATE_TASK_SUCCESS }));
+    const action = actionFactory({ type: CREATE_TASK_SUCCESS });
 
-    expect(newState).toEqual({ tasks: 'mocked' });
+    reducer(state, action);
+
+    expect(createTaskSuccessModule.default).toHaveBeenCalledWith(state, action);
   });
 });
