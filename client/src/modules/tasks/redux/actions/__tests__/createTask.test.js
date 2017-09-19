@@ -13,10 +13,10 @@ const TasksModule = require('../../../../../services/Tasks');
 
 describe('Tasks.Redux.Actions.CreateTask', () => {
   it('should dispatch a CREATE_TASK_LOADING action', () => {
-    TasksModule.__setCreateTaskPromiseFn(() => {});
-
     const initialState = {};
     const store = mockStore(initialState);
+
+    TasksModule.__setCreateTaskPromiseFn(() => {});
 
     store.dispatch(createTask());
 
@@ -25,12 +25,10 @@ describe('Tasks.Redux.Actions.CreateTask', () => {
   });
 
   it('should dispatch a CREATE_TASK_ERROR action', () => {
-    TasksModule.__setCreateTaskPromiseFn((resolve, reject) => reject('error'));
-
     const initialState = {};
     const store = mockStore(initialState);
 
-    console.log(createTask());
+    TasksModule.__setCreateTaskPromiseFn((resolve, reject) => reject('error'));
 
     return store.dispatch(createTask()).catch(() => {
       expect(store.getActions())
@@ -39,10 +37,10 @@ describe('Tasks.Redux.Actions.CreateTask', () => {
   });
 
   it('should dispatch a CREATE_TASK_SUCCESS action', () => {
-    TasksModule.__setCreateTaskPromiseFn(resolve => resolve('success'));
-
     const initialState = {};
     const store = mockStore(initialState);
+
+    TasksModule.__setCreateTaskPromiseFn(resolve => resolve('success'));
 
     return store.dispatch(createTask()).then(() => {
       expect(store.getActions())
