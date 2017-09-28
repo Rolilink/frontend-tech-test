@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tasks.Redux.Reducers.Cases.allTasks.addTasks should add tasks to state when state is empty 1`] = `
+Object {
+  "tasks": Object {
+    "1": Object {
+      "description": "Description",
+      "id": 1,
+      "title": "Title",
+    },
+    "2": Object {
+      "description": "Description",
+      "id": 2,
+      "title": "Title",
+    },
+  },
+}
+`;
+
+exports[`Tasks.Redux.Reducers.Cases.allTasks.addTasks should add tasks withouth erasing existing tasks in the state when the state is not empty 1`] = `
+Object {
+  "tasks": Object {
+    "1": Object {
+      "description": "Description",
+      "id": 1,
+      "title": "Title",
+    },
+    "2": Object {
+      "description": "Description",
+      "id": 2,
+      "title": "Title",
+    },
+    "3": Object {
+      "description": "Description",
+      "id": 3,
+      "title": "Title",
+    },
+    "5": Object {
+      "description": "Description",
+      "id": 5,
+      "title": "Title",
+    },
+  },
+}
+`;
+
+exports[`Tasks.Redux.Reducers.Cases.allTasks.addTasks should update existing tasks in the state when new tasks id matches existing one 1`] = `
+Object {
+  "tasks": Object {
+    "1": Object {
+      "description": "Description",
+      "id": 1,
+      "title": "Title",
+    },
+    "2": Object {
+      "description": "Description",
+      "id": 2,
+      "title": "updated",
+    },
+  },
+}
+`;
