@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tasks.Redux.Selectors.getShowTasksProps should get visible tasks from allTasks when receiving a state 1`] = `
+Array [
+  Object {
+    "description": "Description",
+    "id": 1,
+    "title": "Title",
+  },
+  Object {
+    "description": "Description",
+    "id": 2,
+    "title": "Title",
+  },
+  Object {
+    "description": "Description",
+    "id": 3,
+    "title": "Title",
+  },
+]
+`;

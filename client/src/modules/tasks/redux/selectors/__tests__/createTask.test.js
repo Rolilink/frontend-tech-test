@@ -1,22 +1,27 @@
 import { getIsFetching, getError } from '../createTask';
+import { httpFactory } from '../../../../../__tests__/testUtils/http';
 
-jest.mock('../state', () => (
-  () => ({
+const state = {
+  tasks: {
     createTask: {
-      isFetching: true,
-      error: 'error',
+      ...httpFactory(
+        {
+          error: 'error',
+          isFetching: true,
+        },
+      ),
     },
-  })
-));
+  },
+};
 
 describe('Tasks.Redux.Selectors.CreateTask.getIsFetching', () => {
-  it('should get if tasks are being fetched', () => {
-    expect(getIsFetching()).toBe(true);
+  it('should get isFetching from createTask when receiving a state', () => {
+    expect(getIsFetching(state)).toBe(true);
   });
 });
 
 describe('Tasks.Redux.Selectors.CreateTask.getError', () => {
-  it('should get if there was an error fetching the tasks', () => {
-    expect(getError()).toBe('error');
+  it('should get error from createTask when receiving a state', () => {
+    expect(getError(state)).toBe('error');
   });
 });

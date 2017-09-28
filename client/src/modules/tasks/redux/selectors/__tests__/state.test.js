@@ -1,14 +1,15 @@
 import getState from '../state';
-import { allTasks as allTasksFactories } from '../../factories';
+import { allTasks as allTasksFactories, http as httpFactory } from '../../factories';
 
 const state = {
   tasks: {
     allTasks: allTasksFactories.state(),
+    createTask: httpFactory(),
   },
 };
 
 describe('Tasks.Redux.Selectors.getState', () => {
   it('should get tasks state from store state', () => {
-    expect(getState(state)).toEqual(state.tasks);
+    expect(getState(state)).toMatchSnapshot();
   });
 });
