@@ -1,0 +1,241 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tasks.Create.CreateTask should render a form 1`] = `
+<CreateTask
+  changeMode={[Function]}
+  className=""
+  createTask={[Function]}
+  error={null}
+  isFetching={false}
+>
+  <LoadingMessage
+    className=""
+    isLoading={false}
+    renderMessage={[Function]}
+  >
+    <ErrorMessage
+      className=""
+      error={null}
+      renderMessage={[Function]}
+    >
+      <TaskForm
+        className="CreateTask-TaskForm "
+        onCancel={[Function]}
+        onDescriptionChange={[Function]}
+        onSubmit={[Function]}
+        onTitleChange={[Function]}
+        task={
+          Object {
+            "description": "",
+            "title": "",
+          }
+        }
+      >
+        <Form
+          bsClass="form"
+          className="TasksForm CreateTask-TaskForm "
+          componentClass="form"
+          horizontal={false}
+          inline={false}
+          onSubmit={[Function]}
+        >
+          <form
+            className="TasksForm CreateTask-TaskForm  "
+            onSubmit={[Function]}
+          >
+            <FormGroup
+              bsClass="form-group"
+              className="TasksForm-Title"
+            >
+              <div
+                className="TasksForm-Title form-group"
+              >
+                <ControlLabel
+                  bsClass="control-label"
+                  srOnly={false}
+                >
+                  <label
+                    className="control-label"
+                  >
+                    Title:
+                  </label>
+                </ControlLabel>
+                <FormControl
+                  bsClass="form-control"
+                  className="TasksForm-TitleInput"
+                  componentClass="input"
+                  onChange={[Function]}
+                  type="text"
+                  value=""
+                >
+                  <input
+                    className="TasksForm-TitleInput form-control"
+                    onChange={[Function]}
+                    type="text"
+                    value=""
+                  />
+                </FormControl>
+              </div>
+            </FormGroup>
+            <FormGroup
+              bsClass="form-group"
+              className="TasksForm-Description"
+            >
+              <div
+                className="TasksForm-Description form-group"
+              >
+                <ControlLabel
+                  bsClass="control-label"
+                  srOnly={false}
+                >
+                  <label
+                    className="control-label"
+                  >
+                    Description:
+                  </label>
+                </ControlLabel>
+                <FormControl
+                  bsClass="form-control"
+                  className="TasksForm-DescriptionInput"
+                  componentClass="input"
+                  onChange={[Function]}
+                  type="text"
+                  value=""
+                >
+                  <input
+                    className="TasksForm-DescriptionInput form-control"
+                    onChange={[Function]}
+                    type="text"
+                    value=""
+                  />
+                </FormControl>
+              </div>
+            </FormGroup>
+            <FormGroup
+              bsClass="form-group"
+              className="TasksForm-Actions"
+            >
+              <div
+                className="TasksForm-Actions form-group"
+              >
+                <input
+                  className="btn btn-primary TasksForm-SubmitButton"
+                  disabled={true}
+                  type="submit"
+                  value="Submit"
+                />
+                <Button
+                  active={false}
+                  block={false}
+                  bsClass="btn"
+                  bsStyle="danger"
+                  className="btn btn-primary TasksForm-CancelButton"
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <button
+                    className="btn btn-primary TasksForm-CancelButton btn btn-danger"
+                    disabled={false}
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    Cancel
+                  </button>
+                </Button>
+              </div>
+            </FormGroup>
+          </form>
+        </Form>
+      </TaskForm>
+    </ErrorMessage>
+  </LoadingMessage>
+</CreateTask>
+`;
+
+exports[`Tasks.Create.CreateTask should render an LoadingMessage when isFetching prop is present 1`] = `
+<CreateTask
+  changeMode={[Function]}
+  className=""
+  createTask={[Function]}
+  error={null}
+  isFetching={true}
+>
+  <LoadingMessage
+    className=""
+    isLoading={true}
+    renderMessage={[Function]}
+  >
+    <div
+      className="LoadingMessage "
+    >
+      <div
+        className="LoadingMessage-Spinner"
+      >
+        <Spinner>
+          <i
+            className="fa fa-spinner fa-spin"
+          />
+        </Spinner>
+      </div>
+      <div
+        className="LoadingMessage-Message"
+      >
+        <div>
+          Creating Task
+        </div>
+      </div>
+    </div>
+  </LoadingMessage>
+</CreateTask>
+`;
+
+exports[`Tasks.Create.CreateTask should render an error message when error prop is present 1`] = `
+<CreateTask
+  changeMode={[Function]}
+  className=""
+  createTask={[Function]}
+  error="error"
+  isFetching={false}
+>
+  <LoadingMessage
+    className=""
+    isLoading={false}
+    renderMessage={[Function]}
+  >
+    <ErrorMessage
+      className=""
+      error="error"
+      renderMessage={[Function]}
+    >
+      <div
+        className="ErrorMessage "
+      >
+        <div
+          className="ErrorMessage-Sign"
+        >
+          Here goes an error sign
+        </div>
+        <div
+          className="ErrorMessage-Message"
+        >
+          <div>
+            error
+          </div>
+        </div>
+      </div>
+    </ErrorMessage>
+  </LoadingMessage>
+</CreateTask>
+`;
+
+exports[`Tasks.Create.CreateTask should return a loading message when calling #getLoadingMessage 1`] = `
+<div>
+  Creating Task
+</div>
+`;
+
+exports[`Tasks.Create.CreateTask should return an error message when calling #getErrorMessage 1`] = `
+<div>
+  message
+</div>
+`;

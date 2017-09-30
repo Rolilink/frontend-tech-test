@@ -3,17 +3,23 @@ import configureStore from 'redux-mock-store';
 import { shallow } from 'enzyme';
 
 import connectToState from '../ListTasks';
+import { taskFactory } from '../../../../../__tests__/testUtils/tasks';
 
-jest.mock('../../../redux/', () => ({
-  fetchTasks: jest.fn(),
-  selectors: {
-    getShowTasksProps: () => ({
-      tasks: [],
-      isFetching: true,
-      error: 'error',
-    }),
-  },
+jest.mock('../../../redux/');
+
+const dataModule = require('../../../redux/');
+
+const tasks = [
+  taskFactory({ id: 1 }),
+  taskFactory({ id: 2 }),
+];
+
+dataModule.selectors.getShowTasksProps.mockImplementation(() => ({
+  tasks,
+  isFetching: true,
+  error: 'error',
 }));
+
 
 class Component extends React.Component {
   render() {
@@ -34,9 +40,15 @@ describe('Tasks.List.Providers.ListTasks', () => {
     instanceProps = wrapper.props();
   });
 
-  it('should connect component to state', () => {
-    expect(instanceProps).toHaveProperty('tasks', []);
+  it('should pass tasks prop to component', () => {
+    expect(instanceProps).toHaveProperty('tasks', tasks);
+  });
+
+  it('should pass isFetching prop to component', () => {
     expect(instanceProps).toHaveProperty('isFetching', true);
+  });
+
+  it('should pass error prop to component', () => {
     expect(instanceProps).toHaveProperty('error', 'error');
   });
 

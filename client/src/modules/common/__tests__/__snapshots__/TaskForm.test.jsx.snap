@@ -1,0 +1,175 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Common.TaskForm should have a disabled submit button when task is not passed 1`] = `
+<input
+  className="btn btn-primary TasksForm-SubmitButton"
+  disabled={true}
+  type="submit"
+  value="Submit"
+/>
+`;
+
+exports[`Common.TaskForm should have a disabled submit button when task is on default state 1`] = `
+<input
+  className="btn btn-primary TasksForm-SubmitButton"
+  disabled={true}
+  type="submit"
+  value="Submit"
+/>
+`;
+
+exports[`Common.TaskForm should have a enabled submit button when task is not on default state 1`] = `
+<input
+  className="btn btn-primary TasksForm-SubmitButton"
+  disabled={false}
+  type="submit"
+  value="Submit"
+/>
+`;
+
+exports[`Common.TaskForm should have description input with value equals task.description when task is passed as props 1`] = `
+<input
+  className="TasksForm-DescriptionInput form-control"
+  onChange={[Function]}
+  type="text"
+  value="Description"
+/>
+`;
+
+exports[`Common.TaskForm should have title input with value equals task.title when task is passed as props 1`] = `
+<input
+  className="TasksForm-TitleInput form-control"
+  onChange={[Function]}
+  type="text"
+  value="Title"
+/>
+`;
+
+exports[`Common.TaskForm should render 1`] = `
+<TaskForm
+  className=""
+  task={
+    Object {
+      "description": "Description",
+      "id": 1,
+      "title": "Title",
+    }
+  }
+>
+  <Form
+    bsClass="form"
+    className="TasksForm "
+    componentClass="form"
+    horizontal={false}
+    inline={false}
+    onSubmit={[Function]}
+  >
+    <form
+      className="TasksForm  "
+      onSubmit={[Function]}
+    >
+      <FormGroup
+        bsClass="form-group"
+        className="TasksForm-Title"
+      >
+        <div
+          className="TasksForm-Title form-group"
+        >
+          <ControlLabel
+            bsClass="control-label"
+            srOnly={false}
+          >
+            <label
+              className="control-label"
+            >
+              Title:
+            </label>
+          </ControlLabel>
+          <FormControl
+            bsClass="form-control"
+            className="TasksForm-TitleInput"
+            componentClass="input"
+            onChange={[Function]}
+            type="text"
+            value="Title"
+          >
+            <input
+              className="TasksForm-TitleInput form-control"
+              onChange={[Function]}
+              type="text"
+              value="Title"
+            />
+          </FormControl>
+        </div>
+      </FormGroup>
+      <FormGroup
+        bsClass="form-group"
+        className="TasksForm-Description"
+      >
+        <div
+          className="TasksForm-Description form-group"
+        >
+          <ControlLabel
+            bsClass="control-label"
+            srOnly={false}
+          >
+            <label
+              className="control-label"
+            >
+              Description:
+            </label>
+          </ControlLabel>
+          <FormControl
+            bsClass="form-control"
+            className="TasksForm-DescriptionInput"
+            componentClass="input"
+            onChange={[Function]}
+            type="text"
+            value="Description"
+          >
+            <input
+              className="TasksForm-DescriptionInput form-control"
+              onChange={[Function]}
+              type="text"
+              value="Description"
+            />
+          </FormControl>
+        </div>
+      </FormGroup>
+      <FormGroup
+        bsClass="form-group"
+        className="TasksForm-Actions"
+      >
+        <div
+          className="TasksForm-Actions form-group"
+        >
+          <input
+            className="btn btn-primary TasksForm-SubmitButton"
+            disabled={false}
+            type="submit"
+            value="Submit"
+          />
+          <Button
+            active={false}
+            block={false}
+            bsClass="btn"
+            bsStyle="danger"
+            className="btn btn-primary TasksForm-CancelButton"
+            disabled={false}
+            onClick={[Function]}
+          >
+            <button
+              className="btn btn-primary TasksForm-CancelButton btn btn-danger"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Cancel
+            </button>
+          </Button>
+        </div>
+      </FormGroup>
+    </form>
+  </Form>
+</TaskForm>
+`;

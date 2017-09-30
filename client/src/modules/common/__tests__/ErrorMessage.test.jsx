@@ -1,24 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import serializer from 'enzyme-to-json/serializer';
 
 import ErrorMessage from '../ErrorMessage';
 
+expect.addSnapshotSerializer(serializer);
 const renderMessage = () => <div className="message" />;
 
 describe('Common.ErrorMessage', () => {
-  it('should render with props', () => {
-    const children = <div className="children" />;
-
-    const errorMessage = shallow(
-      <ErrorMessage renderMessage={renderMessage} error="error">
-        {children}
-      </ErrorMessage>,
-    );
-
-    expect(toJson(errorMessage)).toMatchSnapshot();
-  });
-
   it('should render children when error is not passed', () => {
     const children = <div className="children" />;
 
@@ -28,7 +17,7 @@ describe('Common.ErrorMessage', () => {
       </ErrorMessage>,
     );
 
-    expect(errorMessage.contains(children)).toBe(true);
+    expect(errorMessage).toMatchSnapshot();
   });
 
   it('should render a message with renderMessage when there is an error', () => {
@@ -40,6 +29,6 @@ describe('Common.ErrorMessage', () => {
       </ErrorMessage>,
     );
 
-    expect(errorMessage.find('.message').length).toBe(1);
+    expect(errorMessage).toMatchSnapshot();
   });
 });

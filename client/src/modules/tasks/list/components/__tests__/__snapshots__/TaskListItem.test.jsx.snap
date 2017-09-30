@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tasks.List.TaskListItem should render 1`] = `
+<ListGroupItem
+  bsClass="list-group-item"
+  className="TaskListItem TaskListItem-1 "
+  listItem={false}
+>
+  <Row
+    bsClass="row"
+    componentClass="div"
+  >
+    <Col
+      bsClass="col"
+      className="TaskListItem-CheckBoxContainer"
+      componentClass="div"
+      md={2}
+      sm={2}
+    >
+      <Checkbox
+        bsClass="checkbox"
+        disabled={false}
+        inline={false}
+        title=""
+      />
+    </Col>
+    <Col
+      bsClass="col"
+      className="TaskListItem-TitleAndDescription"
+      componentClass="div"
+      md={8}
+      sm={8}
+    >
+      <Row
+        bsClass="row"
+        className="TaskListItem-TitleContainer"
+        componentClass="div"
+      >
+        <Title
+          className="TaskListItem-Title"
+        >
+          Task Title
+        </Title>
+      </Row>
+      <Row
+        bsClass="row"
+        className="TaskListItem-DescriptionContainer"
+        componentClass="div"
+      >
+        <Description
+          className="TaskListItem-Description"
+        >
+          Task Description
+        </Description>
+      </Row>
+    </Col>
+    <Col
+      bsClass="col"
+      className="TaskListItem-CheckBoxContainer"
+      componentClass="div"
+      md={2}
+      sm={2}
+    >
+      <Button
+        active={false}
+        block={false}
+        bsClass="btn"
+        bsStyle="warning"
+        disabled={false}
+      >
+        Edit
+      </Button>
+    </Col>
+  </Row>
+</ListGroupItem>
+`;

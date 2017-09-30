@@ -18,7 +18,7 @@ export default class LoadingMessage extends React.Component {
     const { renderMessage } = this.props;
 
     return (
-      <div>
+      <div className={`LoadingMessage ${this.props.className}`}>
         <div className="LoadingMessage-Spinner">
           <Spinner />
         </div>
@@ -32,9 +32,7 @@ export default class LoadingMessage extends React.Component {
   render() {
     const { isLoading, children } = this.props;
     return (
-      <div className={`LoadingMessage ${this.props.className}`}>
-        {isLoading ? this.loadingView : children}
-      </div>
+      isLoading ? this.loadingView : children
     );
   }
 }

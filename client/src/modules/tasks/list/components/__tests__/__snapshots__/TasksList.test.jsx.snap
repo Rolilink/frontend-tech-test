@@ -1,0 +1,191 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tasks.List.TasksList #getTaskListItem should render an item 1`] = `
+<TaskListItem
+  className=""
+  task={
+    Object {
+      "description": "Task Description",
+      "id": 1,
+      "title": "Task Title",
+    }
+  }
+/>
+`;
+
+exports[`Tasks.List.TasksList should render tasks 1`] = `
+<TasksList
+  className=""
+  tasks={
+    Array [
+      Object {
+        "description": "Task Description",
+        "id": 1,
+        "title": "Task Title",
+      },
+    ]
+  }
+>
+  <List
+    className="TasksList "
+    items={
+      Array [
+        Object {
+          "description": "Task Description",
+          "id": 1,
+          "title": "Task Title",
+        },
+      ]
+    }
+    renderListItem={[Function]}
+  >
+    <ListGroup
+      bsClass="list-group"
+      className="TasksList "
+    >
+      <div
+        className="TasksList  list-group"
+      >
+        <TaskListItem
+          className=""
+          task={
+            Object {
+              "description": "Task Description",
+              "id": 1,
+              "title": "Task Title",
+            }
+          }
+        >
+          <ListGroupItem
+            bsClass="list-group-item"
+            className="TaskListItem TaskListItem-1 "
+            listItem={false}
+          >
+            <span
+              className="TaskListItem TaskListItem-1  list-group-item"
+            >
+              <Row
+                bsClass="row"
+                componentClass="div"
+              >
+                <div
+                  className="row"
+                >
+                  <Col
+                    bsClass="col"
+                    className="TaskListItem-CheckBoxContainer"
+                    componentClass="div"
+                    md={2}
+                    sm={2}
+                  >
+                    <div
+                      className="TaskListItem-CheckBoxContainer col-md-2 col-sm-2"
+                    >
+                      <Checkbox
+                        bsClass="checkbox"
+                        disabled={false}
+                        inline={false}
+                        title=""
+                      >
+                        <div
+                          className="checkbox"
+                        >
+                          <label
+                            title=""
+                          >
+                            <input
+                              disabled={false}
+                              type="checkbox"
+                            />
+                          </label>
+                        </div>
+                      </Checkbox>
+                    </div>
+                  </Col>
+                  <Col
+                    bsClass="col"
+                    className="TaskListItem-TitleAndDescription"
+                    componentClass="div"
+                    md={8}
+                    sm={8}
+                  >
+                    <div
+                      className="TaskListItem-TitleAndDescription col-md-8 col-sm-8"
+                    >
+                      <Row
+                        bsClass="row"
+                        className="TaskListItem-TitleContainer"
+                        componentClass="div"
+                      >
+                        <div
+                          className="TaskListItem-TitleContainer row"
+                        >
+                          <Title
+                            className="TaskListItem-Title"
+                          >
+                            <h5
+                              className="Title TaskListItem-Title"
+                            >
+                              Task Title
+                            </h5>
+                          </Title>
+                        </div>
+                      </Row>
+                      <Row
+                        bsClass="row"
+                        className="TaskListItem-DescriptionContainer"
+                        componentClass="div"
+                      >
+                        <div
+                          className="TaskListItem-DescriptionContainer row"
+                        >
+                          <Description
+                            className="TaskListItem-Description"
+                          >
+                            <p
+                              className="Description TaskListItem-Description"
+                            >
+                              Task Description
+                            </p>
+                          </Description>
+                        </div>
+                      </Row>
+                    </div>
+                  </Col>
+                  <Col
+                    bsClass="col"
+                    className="TaskListItem-CheckBoxContainer"
+                    componentClass="div"
+                    md={2}
+                    sm={2}
+                  >
+                    <div
+                      className="TaskListItem-CheckBoxContainer col-md-2 col-sm-2"
+                    >
+                      <Button
+                        active={false}
+                        block={false}
+                        bsClass="btn"
+                        bsStyle="warning"
+                        disabled={false}
+                      >
+                        <button
+                          className="btn btn-warning"
+                          disabled={false}
+                          type="button"
+                        >
+                          Edit
+                        </button>
+                      </Button>
+                    </div>
+                  </Col>
+                </div>
+              </Row>
+            </span>
+          </ListGroupItem>
+        </TaskListItem>
+      </div>
+    </ListGroup>
+  </List>
+</TasksList>
+`;

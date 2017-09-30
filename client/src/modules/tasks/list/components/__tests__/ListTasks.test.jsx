@@ -1,18 +1,18 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
+import serializer from 'enzyme-to-json/serializer';
 
 import ShowTasks from '../ListTasks';
-import TasksList from '../TasksList';
-import ErrorMessage from '../../../../common/ErrorMessage';
-import LoadingMessage from '../../../../common/LoadingMessage';
-import EmptyMessage from '../../../../common/EmptyMessage';
+import { taskFactory } from '../../../../../__tests__/testUtils/tasks';
+
+expect.addSnapshotSerializer(serializer);
 
 const tasks = [
-  {
+  taskFactory({
     id: 1,
     title: 'Task Title',
     description: 'Task Description',
-  },
+  }),
 ];
 
 describe('Tasks.List.ListTasks', () => {
@@ -24,73 +24,59 @@ describe('Tasks.List.ListTasks', () => {
     expect(fetchTasks.mock.calls.length).toBe(1);
   });
 
-  it('should render a TasksList when there are tasks', () => {
+  it('should render tasks when a tasks object array is passed through the tasks prop', () => {
     const fetchTasks = jest.fn();
 
-    const showTasks = shallow(<ShowTasks fetchTasks={fetchTasks} tasks={tasks} />);
+    const showTasks = mount(<ShowTasks fetchTasks={fetchTasks} tasks={tasks} />);
 
-    expect(showTasks.find(TasksList).length).toBe(1);
+    expect(showTasks).toMatchSnapshot();
   });
 
-  it('should pass tasks props to TasksList', () => {
+  it('should render an error message when an error message is passed through error prop', () => {
     const fetchTasks = jest.fn();
 
-    const showTasks = shallow(<ShowTasks fetchTasks={fetchTasks} tasks={tasks} />);
+    const showTasks = mount(<ShowTasks fetchTasks={fetchTasks} error="error" />);
 
-    expect(showTasks.find(TasksList).first().prop('tasks')).toEqual(tasks);
+    expect(showTasks).toMatchSnapshot();
   });
 
-  it('should render an ErrorMessage when error prop is present', () => {
+  it('should render a loading message when the isFetching prop is present', () => {
     const fetchTasks = jest.fn();
 
-    const showTasks = shallow(<ShowTasks fetchTasks={fetchTasks} error="error" />);
+    const showTasks = mount(<ShowTasks fetchTasks={fetchTasks} isFetching />);
 
-    expect(showTasks.find(ErrorMessage).length).toBe(1);
+    expect(showTasks).toMatchSnapshot();
   });
 
-  it('should render an LoadingMessage when fetching', () => {
+  it('should render an "there is no tasks" message when tasks prop is empty and isFetching prop is not present', () => {
     const fetchTasks = jest.fn();
 
-    const showTasks = shallow(<ShowTasks fetchTasks={fetchTasks} isFetching />);
+    const showTasks = mount(<ShowTasks fetchTasks={fetchTasks} />);
 
-    expect(showTasks.find(LoadingMessage).length).toBe(1);
+    expect(showTasks).toMatchSnapshot();
   });
 
-  it('should render an EmptyMessage when there is no tasks and is not fetching', () => {
+  it('#getErrorMessage should return a error message', () => {
     const fetchTasks = jest.fn();
 
     const showTasks = shallow(<ShowTasks fetchTasks={fetchTasks} />);
 
-    expect(showTasks.find(EmptyMessage).length).toBe(1);
+    expect(showTasks.instance().getErrorMessage('message')).toMatchSnapshot();
   });
 
-  describe('ShowTasks.getErrorMessage', () => {
-    it('should return a message', () => {
-      const fetchTasks = jest.fn();
+  it('#getLoadingMessage should return a loading message', () => {
+    const fetchTasks = jest.fn();
 
-      const showTasks = shallow(<ShowTasks fetchTasks={fetchTasks} />);
+    const showTasks = shallow(<ShowTasks fetchTasks={fetchTasks} />);
 
-      expect(showTasks.instance().getErrorMessage('message')).toEqual(<div>message</div>);
-    });
+    expect(showTasks.instance().getLoadingMessage()).toMatchSnapshot();
   });
 
-  describe('ShowTasks.getLoadingMessage', () => {
-    it('should return a message', () => {
-      const fetchTasks = jest.fn();
+  it('#getEmptyMessage should return a message', () => {
+    const fetchTasks = jest.fn();
 
-      const showTasks = shallow(<ShowTasks fetchTasks={fetchTasks} />);
+    const showTasks = shallow(<ShowTasks fetchTasks={fetchTasks} />);
 
-      expect(showTasks.instance().getLoadingMessage()).toEqual(<div>Loading Tasks</div>);
-    });
-  });
-
-  describe('ShowTasks.getEmptyMessage', () => {
-    it('should return a message', () => {
-      const fetchTasks = jest.fn();
-
-      const showTasks = shallow(<ShowTasks fetchTasks={fetchTasks} />);
-
-      expect(showTasks.instance().getEmptyMessage()).toEqual(<div>No Tasks Found</div>);
-    });
+    expect(showTasks.instance().getEmptyMessage()).toMatchSnapshot();
   });
 });

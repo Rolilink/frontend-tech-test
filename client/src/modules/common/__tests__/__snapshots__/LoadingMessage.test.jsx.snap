@@ -1,22 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Common.LoadingMessage should render with props 1`] = `
+exports[`Common.LoadingMessage should render a message when isLoading prop is true 1`] = `
 <div
   className="LoadingMessage "
 >
-  <div>
+  <div
+    className="LoadingMessage-Spinner"
+  >
+    <Spinner />
+  </div>
+  <div
+    className="LoadingMessage-Message"
+  >
     <div
-      className="LoadingMessage-Spinner"
-    >
-      <Spinner />
-    </div>
-    <div
-      className="LoadingMessage-Message"
-    >
-      <div
-        className="message"
-      />
-    </div>
+      className="message"
+    />
   </div>
 </div>
+`;
+
+exports[`Common.LoadingMessage should render children when isLoading prop is false 1`] = `
+<div
+  className="children"
+/>
 `;
