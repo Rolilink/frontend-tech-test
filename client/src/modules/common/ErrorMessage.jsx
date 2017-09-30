@@ -24,7 +24,7 @@ export default class ErrorMessage extends React.Component {
     const { renderMessage, error } = this.props;
 
     return (
-      <div>
+      <div className={`ErrorMessage ${this.props.className}`}>
         <div className="ErrorMessage-Sign">
           Here goes an error sign
         </div>
@@ -38,9 +38,7 @@ export default class ErrorMessage extends React.Component {
   render() {
     const { children } = this.props;
     return (
-      <div className={`ErrorMessage ${this.props.className}`}>
-        {this.hasError ? this.errorView : children}
-      </div>
+      this.hasError ? this.errorView : children
     );
   }
 }

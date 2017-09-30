@@ -1,0 +1,351 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tasks.List.ListTasks #getEmptyMessage should return a message 1`] = `
+<div>
+  No Tasks Found
+</div>
+`;
+
+exports[`Tasks.List.ListTasks #getErrorMessage should return a error message 1`] = `
+<div>
+  message
+</div>
+`;
+
+exports[`Tasks.List.ListTasks #getLoadingMessage should return a loading message 1`] = `
+<div>
+  Loading Tasks
+</div>
+`;
+
+exports[`Tasks.List.ListTasks should render a loading message when the isFetching prop is present 1`] = `
+<ListTasks
+  className=""
+  error={null}
+  fetchTasks={[Function]}
+  isFetching={true}
+  tasks={Array []}
+>
+  <LoadingMessage
+    className=""
+    isLoading={true}
+    renderMessage={[Function]}
+  >
+    <div
+      className="LoadingMessage "
+    >
+      <div
+        className="LoadingMessage-Spinner"
+      >
+        <Spinner>
+          <i
+            className="fa fa-spinner fa-spin"
+          />
+        </Spinner>
+      </div>
+      <div
+        className="LoadingMessage-Message"
+      >
+        <div>
+          Loading Tasks
+        </div>
+      </div>
+    </div>
+  </LoadingMessage>
+</ListTasks>
+`;
+
+exports[`Tasks.List.ListTasks should render an "there is no tasks" message when tasks prop is empty and isFetching prop is not present 1`] = `
+<ListTasks
+  className=""
+  error={null}
+  fetchTasks={[Function]}
+  isFetching={false}
+  tasks={Array []}
+>
+  <LoadingMessage
+    className=""
+    isLoading={false}
+    renderMessage={[Function]}
+  >
+    <ErrorMessage
+      className=""
+      error={null}
+      renderMessage={[Function]}
+    >
+      <EmptyMessage
+        className=""
+        isEmpty={true}
+        renderMessage={[Function]}
+      >
+        <div
+          className="EmptyMessage "
+        >
+          <div
+            className="EmptyMessage-Sign"
+          >
+            Here goes an empty sign
+          </div>
+          <div
+            className="EmptyMessage-Message"
+          >
+            <div>
+              No Tasks Found
+            </div>
+          </div>
+        </div>
+      </EmptyMessage>
+    </ErrorMessage>
+  </LoadingMessage>
+</ListTasks>
+`;
+
+exports[`Tasks.List.ListTasks should render an error message when an error message is passed through error prop 1`] = `
+<ListTasks
+  className=""
+  error="error"
+  fetchTasks={[Function]}
+  isFetching={false}
+  tasks={Array []}
+>
+  <LoadingMessage
+    className=""
+    isLoading={false}
+    renderMessage={[Function]}
+  >
+    <ErrorMessage
+      className=""
+      error="error"
+      renderMessage={[Function]}
+    >
+      <div
+        className="ErrorMessage "
+      >
+        <div
+          className="ErrorMessage-Sign"
+        >
+          Here goes an error sign
+        </div>
+        <div
+          className="ErrorMessage-Message"
+        >
+          <div>
+            error
+          </div>
+        </div>
+      </div>
+    </ErrorMessage>
+  </LoadingMessage>
+</ListTasks>
+`;
+
+exports[`Tasks.List.ListTasks should render tasks when a tasks object array is passed through the tasks prop 1`] = `
+<ListTasks
+  className=""
+  error={null}
+  fetchTasks={[Function]}
+  isFetching={false}
+  tasks={
+    Array [
+      Object {
+        "description": "Task Description",
+        "id": 1,
+        "title": "Task Title",
+      },
+    ]
+  }
+>
+  <LoadingMessage
+    className=""
+    isLoading={false}
+    renderMessage={[Function]}
+  >
+    <ErrorMessage
+      className=""
+      error={null}
+      renderMessage={[Function]}
+    >
+      <EmptyMessage
+        className=""
+        isEmpty={false}
+        renderMessage={[Function]}
+      >
+        <TasksList
+          className="ShowTasks-TasksList "
+          tasks={
+            Array [
+              Object {
+                "description": "Task Description",
+                "id": 1,
+                "title": "Task Title",
+              },
+            ]
+          }
+        >
+          <List
+            className="TasksList ShowTasks-TasksList "
+            items={
+              Array [
+                Object {
+                  "description": "Task Description",
+                  "id": 1,
+                  "title": "Task Title",
+                },
+              ]
+            }
+            renderListItem={[Function]}
+          >
+            <ListGroup
+              bsClass="list-group"
+              className="TasksList ShowTasks-TasksList "
+            >
+              <div
+                className="TasksList ShowTasks-TasksList  list-group"
+              >
+                <TaskListItem
+                  className=""
+                  task={
+                    Object {
+                      "description": "Task Description",
+                      "id": 1,
+                      "title": "Task Title",
+                    }
+                  }
+                >
+                  <ListGroupItem
+                    bsClass="list-group-item"
+                    className="TaskListItem TaskListItem-1 "
+                    listItem={false}
+                  >
+                    <span
+                      className="TaskListItem TaskListItem-1  list-group-item"
+                    >
+                      <Row
+                        bsClass="row"
+                        componentClass="div"
+                      >
+                        <div
+                          className="row"
+                        >
+                          <Col
+                            bsClass="col"
+                            className="TaskListItem-CheckBoxContainer"
+                            componentClass="div"
+                            md={2}
+                            sm={2}
+                          >
+                            <div
+                              className="TaskListItem-CheckBoxContainer col-md-2 col-sm-2"
+                            >
+                              <Checkbox
+                                bsClass="checkbox"
+                                disabled={false}
+                                inline={false}
+                                title=""
+                              >
+                                <div
+                                  className="checkbox"
+                                >
+                                  <label
+                                    title=""
+                                  >
+                                    <input
+                                      disabled={false}
+                                      type="checkbox"
+                                    />
+                                  </label>
+                                </div>
+                              </Checkbox>
+                            </div>
+                          </Col>
+                          <Col
+                            bsClass="col"
+                            className="TaskListItem-TitleAndDescription"
+                            componentClass="div"
+                            md={8}
+                            sm={8}
+                          >
+                            <div
+                              className="TaskListItem-TitleAndDescription col-md-8 col-sm-8"
+                            >
+                              <Row
+                                bsClass="row"
+                                className="TaskListItem-TitleContainer"
+                                componentClass="div"
+                              >
+                                <div
+                                  className="TaskListItem-TitleContainer row"
+                                >
+                                  <Title
+                                    className="TaskListItem-Title"
+                                  >
+                                    <h5
+                                      className="Title TaskListItem-Title"
+                                    >
+                                      Task Title
+                                    </h5>
+                                  </Title>
+                                </div>
+                              </Row>
+                              <Row
+                                bsClass="row"
+                                className="TaskListItem-DescriptionContainer"
+                                componentClass="div"
+                              >
+                                <div
+                                  className="TaskListItem-DescriptionContainer row"
+                                >
+                                  <Description
+                                    className="TaskListItem-Description"
+                                  >
+                                    <p
+                                      className="Description TaskListItem-Description"
+                                    >
+                                      Task Description
+                                    </p>
+                                  </Description>
+                                </div>
+                              </Row>
+                            </div>
+                          </Col>
+                          <Col
+                            bsClass="col"
+                            className="TaskListItem-CheckBoxContainer"
+                            componentClass="div"
+                            md={2}
+                            sm={2}
+                          >
+                            <div
+                              className="TaskListItem-CheckBoxContainer col-md-2 col-sm-2"
+                            >
+                              <Button
+                                active={false}
+                                block={false}
+                                bsClass="btn"
+                                bsStyle="warning"
+                                disabled={false}
+                              >
+                                <button
+                                  className="btn btn-warning"
+                                  disabled={false}
+                                  type="button"
+                                >
+                                  Edit
+                                </button>
+                              </Button>
+                            </div>
+                          </Col>
+                        </div>
+                      </Row>
+                    </span>
+                  </ListGroupItem>
+                </TaskListItem>
+              </div>
+            </ListGroup>
+          </List>
+        </TasksList>
+      </EmptyMessage>
+    </ErrorMessage>
+  </LoadingMessage>
+</ListTasks>
+`;

@@ -1,27 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ListGroup from 'react-bootstrap/lib/ListGroup';
-import toJson from 'enzyme-to-json';
+import serializer from 'enzyme-to-json/serializer';
 
 import List from '../List';
 
+expect.addSnapshotSerializer(serializer);
 const renderListItem = item => <div className="list-item" key={`list-item-${item}`}>{item}</div>;
 
 describe('Common.List', () => {
-  it('should render with props', () => {
-    const items = [1, 2];
-    const list = shallow(<List renderListItem={renderListItem} items={items} />);
-
-    expect(toJson(list)).toMatchSnapshot();
-  });
-
-  it('should render a ListGroup', () => {
-    const items = [1, 2];
-    const list = shallow(<List renderListItem={renderListItem} items={items} />);
-
-    expect(list.find(ListGroup).length).toBe(1);
-  });
-
   it('should call itemRenderer to render items', () => {
     const renderListItemMock = jest.fn(renderListItem);
     const items = [1, 2];
@@ -34,13 +20,13 @@ describe('Common.List', () => {
     const items = [1, 2];
     const list = shallow(<List renderListItem={renderListItem} items={items} />);
 
-    expect(list.find('.list-item').length).toBe(2);
+    expect(list).toMatchSnapshot();
   });
 
   it('should not render items when empty', () => {
     const items = [];
     const list = shallow(<List renderListItem={renderListItem} items={items} />);
 
-    expect(list.find('.list-item').length).toBe(0);
+    expect(list).toMatchSnapshot();
   });
 });

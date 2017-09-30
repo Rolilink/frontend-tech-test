@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tasks.Redux.Selectors.getState should get tasks state from store state 1`] = `
+Object {
+  "allTasks": Object {
+    "error": null,
+    "isFetching": false,
+    "tasks": Object {},
+  },
+  "createTask": Object {
+    "error": null,
+    "isFetching": false,
+  },
+}
+`;

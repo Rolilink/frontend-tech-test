@@ -1,26 +1,15 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import serializer from 'enzyme-to-json/serializer';
 
 import EmptyMessage from '../EmptyMessage';
 
 const renderMessage = () => <div className="message" />;
 
+expect.addSnapshotSerializer(serializer);
+
 describe('Common.EmptyMessage', () => {
-  it('should render with props', () => {
-    const isEmpty = true;
-    const children = <div className="children" />;
-
-    const emptyMessage = shallow(
-      <EmptyMessage isEmpty={isEmpty} renderMessage={renderMessage}>
-        {children}
-      </EmptyMessage>,
-    );
-
-    expect(toJson(emptyMessage)).toMatchSnapshot();
-  });
-
-  it('should render children when isEmpty not true', () => {
+  it('should render children when isEmpty is false', () => {
     const isEmpty = false;
     const children = <div className="children" />;
 
@@ -30,10 +19,10 @@ describe('Common.EmptyMessage', () => {
       </EmptyMessage>,
     );
 
-    expect(emptyMessage.contains(children)).toBe(true);
+    expect(emptyMessage).toMatchSnapshot();
   });
 
-  it('should render a message with renderMessage when isEmpty === true', () => {
+  it('should render a message with renderMessage when isEmpty is true', () => {
     const isEmpty = true;
     const children = <div className="children" />;
 
@@ -43,6 +32,6 @@ describe('Common.EmptyMessage', () => {
       </EmptyMessage>,
     );
 
-    expect(emptyMessage.find('.message').length).toBe(1);
+    expect(emptyMessage).toMatchSnapshot();
   });
 });

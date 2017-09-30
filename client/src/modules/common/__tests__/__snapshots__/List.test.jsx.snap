@@ -1,6 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Common.List should render with props 1`] = `
+exports[`Common.List should not render items when empty 1`] = `
+<ListGroup
+  bsClass="list-group"
+  className=""
+/>
+`;
+
+exports[`Common.List should render items 1`] = `
 <ListGroup
   bsClass="list-group"
   className=""

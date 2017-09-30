@@ -1,11 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
+import serializer from 'enzyme-to-json/serializer';
 
 import CreateTask from '../CreateTask';
-import TaskForm from '../../../../common/TaskForm';
-import ErrorMessage from '../../../../common/ErrorMessage';
-import LoadingMessage from '../../../../common/LoadingMessage';
 
+expect.addSnapshotSerializer(serializer);
 
 describe('Tasks.Create.CreateTask', () => {
   let createTask;
@@ -27,44 +26,23 @@ describe('Tasks.Create.CreateTask', () => {
     };
   });
 
-  it('should render a TaskForm', () => {
-    const wrapper = shallow(
+  it('should render a form', () => {
+    const wrapper = mount(
       <CreateTask
         {...{
           createTask,
           changeMode,
-          isFetching,
-          error,
         }}
       />,
     );
 
-    expect(wrapper.find(TaskForm).length).toBe(1);
+    expect(wrapper).toMatchSnapshot();
   });
 
-  it('should pass props to TaskForm', () => {
-    const wrapper = shallow(
-      <CreateTask
-        {...{
-          createTask,
-          changeMode,
-          isFetching,
-          error,
-        }}
-      />,
-    );
-
-    expect(wrapper.find(TaskForm).first().props()).toHaveProperty('onTitleChange');
-    expect(wrapper.find(TaskForm).first().props()).toHaveProperty('onDescriptionChange');
-    expect(wrapper.find(TaskForm).first().props()).toHaveProperty('onSubmit');
-    expect(wrapper.find(TaskForm).first().props()).toHaveProperty('onCancel');
-    expect(wrapper.find(TaskForm).first().props()).toHaveProperty('task');
-  });
-
-  it('should render an ErrorMessage when error prop is present', () => {
+  it('should render an error message when error prop is present', () => {
     error = 'error';
 
-    const wrapper = shallow(
+    const wrapper = mount(
       <CreateTask
         {...{
           createTask,
@@ -75,12 +53,27 @@ describe('Tasks.Create.CreateTask', () => {
       />,
     );
 
-    expect(wrapper.find(ErrorMessage).length).toBe(1);
+    expect(wrapper).toMatchSnapshot();
   });
 
-  it('should render an LoadingMessage when fetching', () => {
+  it('should render an LoadingMessage when isFetching prop is present', () => {
     isFetching = true;
 
+    const wrapper = mount(
+      <CreateTask
+        {...{
+          createTask,
+          changeMode,
+          isFetching,
+          error,
+        }}
+      />,
+    );
+
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should return an error message when calling #getErrorMessage', () => {
     const wrapper = shallow(
       <CreateTask
         {...{
@@ -92,174 +85,147 @@ describe('Tasks.Create.CreateTask', () => {
       />,
     );
 
-    expect(wrapper.find(LoadingMessage).length).toBe(1);
+    expect(wrapper.instance().getErrorMessage('message')).toMatchSnapshot();
   });
 
-  describe('CreateTask.getErrorMessage', () => {
-    it('should return a message', () => {
-      const wrapper = shallow(
-        <CreateTask
-          {...{
-            createTask,
-            changeMode,
-            isFetching,
-            error,
-          }}
-        />,
-      );
+  it('should return a loading message when calling #getLoadingMessage', () => {
+    const wrapper = shallow(
+      <CreateTask
+        {...{
+          createTask,
+          changeMode,
+          isFetching,
+          error,
+        }}
+      />,
+    );
 
-      expect(wrapper.instance().getErrorMessage('message')).toEqual(<div>message</div>);
-    });
+    expect(wrapper.instance().getLoadingMessage()).toMatchSnapshot();
   });
 
-  describe('CreateTask.getLoadingMessage', () => {
-    it('should return a message', () => {
-      const wrapper = shallow(
-        <CreateTask
-          {...{
-            createTask,
-            changeMode,
-            isFetching,
-            error,
-          }}
-        />,
-      );
+  it('should call props.changeMode with null when calling #clearMode', () => {
+    const wrapper = shallow(
+      <CreateTask
+        {...{
+          createTask,
+          changeMode,
+          isFetching,
+          error,
+        }}
+      />,
+    );
 
-      expect(wrapper.instance().getLoadingMessage()).toEqual(<div>Creating Task</div>);
-    });
+    wrapper.instance().clearMode();
+
+    expect(changeMode).toHaveBeenCalledWith(null);
   });
 
-  describe('CreateTask.clearMode', () => {
-    it('should call props.changeMode with null', () => {
-      const wrapper = shallow(
-        <CreateTask
-          {...{
-            createTask,
-            changeMode,
-            isFetching,
-            error,
-          }}
-        />,
-      );
+  it('should set the state to its default when calling #clearMode', () => {
+    const task = {
+      title: 'test',
+      description: 'test description',
+    };
 
-      wrapper.instance().clearMode();
+    const wrapper = shallow(
+      <CreateTask
+        {...{
+          createTask,
+          changeMode,
+          isFetching,
+          error,
+        }}
+      />,
+    );
 
-      expect(changeMode).toHaveBeenCalledWith(null);
-    });
+    wrapper.instance().setState({ task });
+    wrapper.instance().clearMode();
 
-    it('should set the default state', () => {
-      const task = {
-        title: 'test',
-        description: 'test description',
-      };
+    expect(wrapper.instance().state).toEqual(defaultState);
+  });
 
-      const wrapper = shallow(
-        <CreateTask
-          {...{
-            createTask,
-            changeMode,
-            isFetching,
-            error,
-          }}
-        />,
-      );
+  it('should update the title when calling #updateTitle', () => {
+    const updatedTitle = 'updated title';
 
-      wrapper.instance().setState({ task });
-      wrapper.instance().clearMode();
+    const wrapper = shallow(
+      <CreateTask
+        {...{
+          createTask,
+          changeMode,
+          isFetching,
+          error,
+        }}
+      />,
+    );
 
+    wrapper.instance().updateTitle(updatedTitle);
+
+    expect(wrapper.instance().state.task.title).toBe(updatedTitle);
+  });
+
+  it('should update the description state when calling #updatedDescription', () => {
+    const updatedDescription = 'updated description';
+
+    const wrapper = shallow(
+      <CreateTask
+        {...{
+          createTask,
+          changeMode,
+          isFetching,
+          error,
+        }}
+      />,
+    );
+
+    wrapper.instance().updateDescription(updatedDescription);
+
+    expect(wrapper.instance().state.task.description).toBe(updatedDescription);
+  });
+
+  it('should call props.createTask with task when calling #submitTask', () => {
+    createTask = jest.fn(() => (Promise.resolve()));
+    const task = {
+      title: 'test',
+      description: 'test description',
+    };
+
+    const wrapper = shallow(
+      <CreateTask
+        {...{
+          createTask,
+          changeMode,
+          isFetching,
+          error,
+        }}
+      />,
+    );
+
+    wrapper.instance().setState({ task });
+    wrapper.instance().submitTask();
+
+    expect(createTask).toHaveBeenCalledWith(task);
+  });
+
+  it('should set the default state wwhen calling #submitTask', () => {
+    createTask = jest.fn(() => (Promise.resolve()));
+    const task = {
+      title: 'test',
+      description: 'test description',
+    };
+
+    const wrapper = shallow(
+      <CreateTask
+        {...{
+          createTask,
+          changeMode,
+          isFetching,
+          error,
+        }}
+      />,
+    );
+
+    wrapper.instance().setState({ task });
+    return wrapper.instance().submitTask().then(() => {
       expect(wrapper.instance().state).toEqual(defaultState);
-    });
-  });
-
-  describe('CreateTask.updateTitle', () => {
-    it('should update the title', () => {
-      const updatedTitle = 'updated title';
-
-      const wrapper = shallow(
-        <CreateTask
-          {...{
-            createTask,
-            changeMode,
-            isFetching,
-            error,
-          }}
-        />,
-      );
-
-      wrapper.instance().updateTitle(updatedTitle);
-
-      expect(wrapper.instance().state.task.title).toBe(updatedTitle);
-    });
-  });
-
-  describe('CreateTask.updateTitle', () => {
-    it('should update the description', () => {
-      const updatedDescription = 'updated description';
-
-      const wrapper = shallow(
-        <CreateTask
-          {...{
-            createTask,
-            changeMode,
-            isFetching,
-            error,
-          }}
-        />,
-      );
-
-      wrapper.instance().updateDescription(updatedDescription);
-
-      expect(wrapper.instance().state.task.description).toBe(updatedDescription);
-    });
-  });
-
-  describe('CreateTask.submitTask', () => {
-    it('should call props.createTask with task', () => {
-      createTask = jest.fn(() => (Promise.resolve()));
-      const task = {
-        title: 'test',
-        description: 'test description',
-      };
-
-      const wrapper = shallow(
-        <CreateTask
-          {...{
-            createTask,
-            changeMode,
-            isFetching,
-            error,
-          }}
-        />,
-      );
-
-      wrapper.instance().setState({ task });
-      wrapper.instance().submitTask();
-
-      expect(createTask).toHaveBeenCalledWith(task);
-    });
-
-    it('should set the default state when resolving the promise returned by createTask', () => {
-      createTask = jest.fn(() => (Promise.resolve()));
-      const task = {
-        title: 'test',
-        description: 'test description',
-      };
-
-      const wrapper = shallow(
-        <CreateTask
-          {...{
-            createTask,
-            changeMode,
-            isFetching,
-            error,
-          }}
-        />,
-      );
-
-      wrapper.instance().setState({ task });
-      return wrapper.instance().submitTask().then(() => {
-        expect(wrapper.instance().state).toEqual(defaultState);
-      });
     });
   });
 });

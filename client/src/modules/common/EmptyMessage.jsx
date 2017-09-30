@@ -17,7 +17,7 @@ export default class EmptyMessage extends React.Component {
     const { renderMessage } = this.props;
 
     return (
-      <div>
+      <div className={`EmptyMessage ${this.props.className}`}>
         <div className="EmptyMessage-Sign">
           Here goes an empty sign
         </div>
@@ -31,9 +31,7 @@ export default class EmptyMessage extends React.Component {
   render() {
     const { isEmpty, children } = this.props;
     return (
-      <div className={`EmptyMessage ${this.props.className}`}>
-        {isEmpty ? this.emptyView : children}
-      </div>
+      isEmpty ? this.emptyView : children
     );
   }
 }

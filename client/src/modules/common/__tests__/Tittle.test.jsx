@@ -1,15 +1,16 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import serializer from 'enzyme-to-json/serializer';
 
 import Title from '../Title';
 
+expect.addSnapshotSerializer(serializer);
 const text = 'the title';
 
 describe('Common.Tittle', () => {
   it('should render with props', () => {
     const title = shallow(<Title>{text}</Title>);
 
-    expect(toJson(title)).toMatchSnapshot();
+    expect(title).toMatchSnapshot();
   });
 });

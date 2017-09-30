@@ -8,38 +8,40 @@ import {
 } from '../../actionTypes';
 
 // Mock http cases
-jest.mock('../cases/http', () => ({
-  setLoading: jest.fn(() => ({
-    error: null,
-    isFetching: 'mocked',
-  })),
-  setError: jest.fn(() => ({
-    error: 'mocked',
-    isFetching: false,
-  })),
-  setSuccess: jest.fn(() => ({
-    error: null,
-    isFetching: false,
-  })),
-}));
+jest.mock('../cases/http');
+const httpCasesModule = require('../cases/http');
 
 
 describe('Tasks.Redux.Reducers.CreateTask', () => {
-  it('should call setLoading case when dispatching an CREATE_TASK_LOADING action', () => {
-    const newState = reducer(undefined, actionFactory({ type: CREATE_TASK_LOADING }));
+  const state = {};
 
-    expect(newState).toEqual({ isFetching: 'mocked', error: null });
+  afterEach(() => {
+    httpCasesModule.setLoading.mockClear();
+    httpCasesModule.setError.mockClear();
+    httpCasesModule.setSuccess.mockClear();
+  });
+
+  it('should call setLoading case when dispatching an CREATE_TASK_LOADING action', () => {
+    const action = actionFactory({ type: CREATE_TASK_LOADING });
+
+    reducer(state, action);
+
+    expect(httpCasesModule.setLoading).toHaveBeenCalledWith(state, action);
   });
 
   it('should call setError case when dispatching an CREATE_TASK_ERROR action', () => {
-    const newState = reducer(undefined, actionFactory({ type: CREATE_TASK_ERROR }));
+    const action = actionFactory({ type: CREATE_TASK_ERROR });
 
-    expect(newState).toEqual({ error: 'mocked', isFetching: false });
+    reducer(state, action);
+
+    expect(httpCasesModule.setError).toHaveBeenCalledWith(state, action);
   });
 
   it('should call fetchTasksSuccess case when dispatching an CREATE_TASK_SUCCESS action', () => {
-    const newState = reducer(undefined, actionFactory({ type: CREATE_TASK_SUCCESS }));
+    const action = actionFactory({ type: CREATE_TASK_SUCCESS });
 
-    expect(newState).toEqual({ error: null, isFetching: false });
+    reducer(state, action);
+
+    expect(httpCasesModule.setSuccess).toHaveBeenCalledWith(state, action);
   });
 });
